@@ -1,0 +1,10 @@
+# ignore built jars
+target/
+
+# logs
+*.log
+
+# Ensime specific
+.ensime
+.ensime_cache/
+.ensime_lucene/
