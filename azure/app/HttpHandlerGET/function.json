@@ -1,0 +1,21 @@
+{
+  "scriptFile": "../MyAwesomeFunction.jar",
+  "entryPoint": "com.example.azure.Handler.runHttpGet",
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "name": "req",
+      "webHookType" : "NONE",
+      "direction": "in",
+      "authLevel": "anonymous",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "type": "http",
+      "name": "$return",
+      "direction": "out"
+    }
+  ]
+}
