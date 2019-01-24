@@ -1,6 +1,6 @@
 val commonSettings = Seq(
   version := "0.1-SNAPSHOT",
-  scalaVersion := "2.12.7",
+  scalaVersion := "2.12.8",
   scalacOptions ++= Seq(
     "-deprecation",
     "-feature",
