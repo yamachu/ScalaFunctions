@@ -34,7 +34,7 @@ lazy val azure = (project in file("azure"))
     name := "my-awesome-function-azure",
     libraryDependencies ++= azureDependencies,
     resolvers ++= azureResolvers,
-    assemblyOutputPath in assembly := baseDirectory.value / "app" / "MyAwesomeFunction" / "MyAwesomeFunction.jar",
+    assemblyOutputPath in assembly := baseDirectory.value / "app" / "MyAwesomeFunction.jar",
   )
   .dependsOn(root)
 
