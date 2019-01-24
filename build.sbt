@@ -47,3 +47,5 @@ val azureDependencies = Seq(
 val azureResolvers = Seq(
   "Central Maven Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 )
+
+scalafmtOnCompile in ThisBuild := true
