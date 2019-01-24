@@ -8,3 +8,6 @@ target/
 .ensime
 .ensime_cache/
 .ensime_lucene/
+
+# IntelliJ IDEA
+.idea/
