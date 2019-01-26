@@ -1,4 +1,4 @@
-.PHONY: azure/run azure/run-with-debug azure/build azure/build-watch
+.PHONY: azure/run azure/run-with-debug azure/build azure/build-watch dump-outdated outdated
 
 azure/run: azure/app/MyAwesomeFunction.jar
 	cd azure/app && func host start
@@ -20,3 +20,10 @@ build:
 
 build-watch:
 	sbt "~aggregate/assembly"
+
+%/target/dependency-updates.txt:
+	sbt $(subst /target/dependency-updates.txt,,$@)/dependencyUpdatesReport
+
+outdated: azure/target/dependency-updates.txt
+	python ./tools/parse-dependency-updates.py $^
+	@rm $^
