@@ -8,5 +8,5 @@ script:
   - |
     if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
       echo "dump change list"
-      git diff $(git log --first-parent master --oneline |cut -f1 -d' '|head -n2|tail -r|awk '{if(NR%2)ORS="...";else ORS="";print}') --name-only
+      git diff $(git log --first-parent master --oneline |cut -f1 -d' '|head -n2|tac|awk '{if(NR%2)ORS="...";else ORS="";print}') --name-only
     fi
