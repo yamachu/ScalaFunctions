@@ -14,3 +14,9 @@ azure/build:
 
 azure/build-watch:
 	sbt "~azure/assembly"
+
+build:
+	sbt aggregate/assembly
+
+build-watch:
+	sbt "~aggregate/assembly"
