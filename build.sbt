@@ -22,7 +22,7 @@ lazy val aggregate = (project in file("aggregate"))
   .settings(
     name := "my-awesome-function-aggregate",
   )
-  .aggregate(root, azure)
+  .aggregate(root, azure, aws)
 
 lazy val sharedRoot = crossProject(JSPlatform)
   .crossType(CrossType.Pure)
@@ -51,7 +51,14 @@ lazy val azure = (project in file("azure"))
   )
   .dependsOn(root)
 
-// Todo: AWS Lambda
+lazy val aws = (project in file("aws"))
+  .settings(commonSettings)
+  .settings(
+    name := "my-awesome-function-aws",
+    libraryDependencies ++= awsDependencies,
+    assemblyOutputPath in assembly := baseDirectory.value / "app" / "MyAwesomeFunction.jar",
+  )
+  .dependsOn(root)
 
 lazy val scalajs = (project in file("scalajs"))
   .settings(commonSettings)
@@ -72,6 +79,10 @@ val sharedDependencies = Seq(
 
 val azureDependencies = Seq(
   "com.microsoft.azure.functions" % "azure-functions-java-library" % "1.2.2"
+)
+
+val awsDependencies = Seq(
+  "com.amazonaws" % "aws-lambda-java-core" % "1.2.0",
 )
 
 scalafmtOnCompile in ThisBuild := true
