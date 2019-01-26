@@ -33,7 +33,6 @@ lazy val azure = (project in file("azure"))
   .settings(
     name := "my-awesome-function-azure",
     libraryDependencies ++= azureDependencies,
-    resolvers ++= azureResolvers,
     assemblyOutputPath in assembly := baseDirectory.value / "app" / "MyAwesomeFunction.jar",
   )
   .dependsOn(root)
@@ -41,11 +40,7 @@ lazy val azure = (project in file("azure"))
 // Todo: AWS Lambda
 
 val azureDependencies = Seq(
-  "com.microsoft.azure.functions" % "azure-functions-java-library" % "1.2.0"
-)
-
-val azureResolvers = Seq(
-  "Central Maven Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+  "com.microsoft.azure.functions" % "azure-functions-java-library" % "1.2.2"
 )
 
 scalafmtOnCompile in ThisBuild := true
