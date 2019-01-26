@@ -1,5 +1,12 @@
 language: scala
 scala:
-- 2.12.8
+  - 2.12.8
 jdk:
-- oraclejdk8
+  - oraclejdk8
+script:
+  - make build # Todo: change test
+  - |
+    if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
+      echo "dump change list"
+      git diff $(git log --first-parent master --oneline |cut -f1 -d' '|head -n2|tail -r|awk '{if(NR%2)ORS="...";else ORS="";print}') --name-only
+    fi
