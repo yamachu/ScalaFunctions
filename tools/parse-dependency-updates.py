@@ -29,6 +29,8 @@ def uniq_outdated_package(pp):
 
 
 def _format_str(package_version_list):
+    if len(package_version_list) == 0:
+        return []
     ln = max([len(x[0]) for x in package_version_list])
     fmt = '{name:<{padding}} {version}'
 
