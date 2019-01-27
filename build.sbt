@@ -39,7 +39,7 @@ lazy val root = (project in file("."))
   .settings(commonSettings)
   .settings(
     name := "my-awesome-function",
-    libraryDependencies ++= sharedDependencies
+    libraryDependencies ++= sharedDependencies ++ commonDependencies,
   )
 
 lazy val azure = (project in file("azure"))
@@ -83,6 +83,10 @@ val azureDependencies = Seq(
 
 val awsDependencies = Seq(
   "com.amazonaws" % "aws-lambda-java-core" % "1.2.0",
+)
+
+val commonDependencies = Seq(
+  "org.json4s" %% "json4s-jackson" % "3.6.1",
 )
 
 scalafmtOnCompile in ThisBuild := true
