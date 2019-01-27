@@ -13,13 +13,13 @@ azure/build:
 	sbt azure/assembly
 
 azure/build-watch:
-	sbt "~azure/assembly"
+	sbt "project azure" "~assembly"
 
 build:
 	sbt aggregate/assembly
 
 build-watch:
-	sbt "~aggregate/assembly"
+	sbt "project aggregate" "~assembly"
 
 %/target/dependency-updates.txt:
 	sbt $(subst /target/dependency-updates.txt,,$@)/dependencyUpdatesReport
