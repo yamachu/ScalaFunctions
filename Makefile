@@ -39,3 +39,6 @@ azure/functions.zip: azure/app/MyAwesomeFunction.jar
 
 docker/init:
 	docker build . -f java.Dockerfile -t azure-functions-java-host
+
+docker/azure-functions:
+	docker-compose run --service-ports azure-functions

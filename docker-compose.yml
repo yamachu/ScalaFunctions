@@ -1,0 +1,19 @@
+version: "3"
+
+services: 
+  azure-functions:
+    image: azure-functions-java-host # 将来的に azure-functions/java:2.0 になるはず
+    ports: 
+      - "8080:80"
+    volumes: 
+      - ./azure/app:/home/site/wwwroot
+
+  azure-functions-debug:
+    image: azure-functions-java-host
+    ports: 
+      - "8080:80"
+      - "5005:5005"
+    environment: 
+      - languageWorkers:java:arguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+    volumes: 
+      - ./azure/app:/home/site/wwwroot
