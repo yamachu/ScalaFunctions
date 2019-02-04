@@ -6,8 +6,8 @@ case class Functions(logger: utils.Logger) {
   def run(req: Requests): Either[Throwable, Response] = {
     logger.info("This is common Functions run")
     req.name match {
-      case "foo" => Right(Response("bar"))
-      case _     => Left(new Exception(s"require `foo`, but ${req.name}"))
+      case "yamachu" => Right(Response("Hi, admin!"))
+      case _         => Left(new Exception(s"require admin user name, but ${req.name}"))
     }
   }
 
