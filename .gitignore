@@ -14,3 +14,4 @@ target/
 
 # bye built files
 *.jar
+*.zip
