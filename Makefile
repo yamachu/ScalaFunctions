@@ -27,3 +27,12 @@ build-watch:
 outdated: azure/target/dependency-updates.txt
 	python ./tools/parse-dependency-updates.py $^
 	@rm $^
+
+AZURE_DEPLOY_USER=
+AZURE_DEPLOY_PASSWORD=
+AZURE_DEPLOY_SITE=
+deploy/azure: azure/functions.zip
+	@curl -X POST -u '$$$(AZURE_DEPLOY_USER):$(AZURE_DEPLOY_PASSWORD)' --data-binary @azure/functions.zip 'https://$(AZURE_DEPLOY_SITE).scm.azurewebsites.net/api/zipdeploy'
+
+azure/functions.zip: azure/app/MyAwesomeFunction.jar
+	cd azure && zip -r9 functions.zip app
