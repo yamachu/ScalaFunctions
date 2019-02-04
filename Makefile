@@ -36,3 +36,9 @@ deploy/azure: azure/functions.zip
 
 azure/functions.zip: azure/app/MyAwesomeFunction.jar
 	cd azure && zip -r9 functions.zip app
+
+docker/init:
+	docker build . -f java.Dockerfile -t azure-functions-java-host
+
+docker/azure-functions:
+	docker-compose run --service-ports azure-functions
