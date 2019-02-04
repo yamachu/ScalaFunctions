@@ -8,5 +8,6 @@ script:
   - |
     if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
       echo "dump change list"
-      git diff $(git log --first-parent master --oneline |cut -f1 -d' '|head -n2|tac|awk '{if(NR%2)ORS="...";else ORS="";print}') --name-only
+      FILES=`git diff $(git log --first-parent master --oneline |cut -f1 -d' '|head -n2|tac|awk '{if(NR%2)ORS="...";else ORS="";print}') --name-only`
+      echo $FILES| grep -E '^src|azure|build\.sbt'&& make deploy/azure AZURE_DEPLOY_USER='' AZURE_DEPLOY_PASSWORD='' AZURE_DEPLOY_SITE=''
     fi
