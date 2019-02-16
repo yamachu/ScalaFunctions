@@ -43,4 +43,12 @@ val azureDependencies = Seq(
   "com.microsoft.azure.functions" % "azure-functions-java-library" % "1.2.2"
 )
 
+val circeVersion = "0.11.1"
+
+val commonDependencies = Seq() ++ Seq(
+  "io.circe" %% "circe-core",
+  "io.circe" %% "circe-generic",
+  "io.circe" %% "circe-parser"
+).map(_ % circeVersion)
+
 scalafmtOnCompile in ThisBuild := true
