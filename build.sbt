@@ -39,7 +39,7 @@ lazy val root = (project in file("."))
   .settings(commonSettings)
   .settings(
     name := "my-awesome-function",
-    libraryDependencies ++= sharedDependencies ++ commonDependencies,
+    libraryDependencies ++= sharedDependencies,
   )
 
 lazy val azure = (project in file("azure"))
@@ -81,12 +81,14 @@ val azureDependencies = Seq(
   "com.microsoft.azure.functions" % "azure-functions-java-library" % "1.2.2"
 )
 
-val awsDependencies = Seq(
-  "com.amazonaws" % "aws-lambda-java-core" % "1.2.0",
-)
+val circeVersion = "0.11.1"
 
-val commonDependencies = Seq(
-  "org.json4s" %% "json4s-jackson" % "3.6.1",
-)
+val awsDependencies = Seq(
+  "com.amazonaws" % "aws-lambda-java-core"   % "1.2.0",
+) ++ Seq(
+  "io.circe" %% "circe-core",
+  "io.circe" %% "circe-generic",
+  "io.circe" %% "circe-parser",
+).map(_ % circeVersion)
 
 scalafmtOnCompile in ThisBuild := true
