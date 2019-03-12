@@ -26,5 +26,5 @@ action "deploy AzureFunctions" {
 action "build azure package" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
   needs = ["only master"]
-  args = "run -it --rm hseeberger/scala-sbt:8u181_2.12.8_1.2.8 azure/assembly"
+  args = "run --rm hseeberger/scala-sbt:8u181_2.12.8_1.2.8 azure/assembly"
 }
