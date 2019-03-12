@@ -19,6 +19,7 @@ action "deploy AzureFunctions" {
   needs = ["login Azure"]
   env = {
     AZURE_APP_NAME = "ScalaFunctions"
+    AZURE_APP_PACKAGE_LOCATION = "azure/app"
   }
 }
 
