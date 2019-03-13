@@ -20,6 +20,7 @@ class Handler {
                  context: ExecutionContext): HttpResponseMessage = {
     val logger = Logger(context.getLogger)
     logger.info("Scala HTTP GET trigger processed a request.")
+    logger.info("HttpHandlerGET")
 
     // Parse query parameter
     val queryMap: collection.mutable.Map[String, String] =
