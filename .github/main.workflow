@@ -48,8 +48,10 @@ action "install core tools" {
 }
 
 action "deploy packages" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  uses = "./.github/node-runtime"
   needs = ["install core tools"]
   secrets = ["AZURE_APPNAME"]
-  runs = "sh -c \"cd ${GITHUB_WORKSPACE}/azure/app && ${GITHUB_WORKSPACE}/node_modules/.bin/func azure functionapp publish ${AZURE_APPNAME}\""
+  env = {
+    FUNCTIONS_ROOT_PATH = "${GITHUB_WORKSPACE}/azure/app"
+  }
 }
