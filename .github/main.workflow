@@ -1,6 +1,6 @@
 workflow "deployAzure" {
   on = "push"
-  resolves = ["deploy AzureFunctions"]
+  resolves = ["Sync Function Triggers"]
 }
 
 action "only master" {
@@ -27,4 +27,11 @@ action "build azure package" {
   uses = "./.github/sbt"
   needs = ["only master"]
   args = "azure/assembly"
+}
+
+action "Sync Function Triggers" {
+  uses = "Azure/github-actions/cli@master"
+  needs = ["deploy AzureFunctions"]
+  args = "az resource invoke-action --resource-group ${AZURE_RESOURCEGROUP} --action syncfunctiontriggers --name ${AZURE_APPNAME} --resource-type Microsoft.Web/sites"
+  secrets = ["AZURE_RESOURCEGROUP", "AZURE_APPNAME"]
 }
