@@ -9,7 +9,5 @@ LABEL "repository"="https://github.com/yamachu/ScalaFunctions"
 LABEL "homepage"="https://github.com/yamachu/ScalaFunctions"
 LABEL "maintainer"="Yusuke Yamada <yamachu.dev@gmail.com>"
 
-CMD ["npm", "i", "azure-functions-core-tools"]
-
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
