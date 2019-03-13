@@ -32,6 +32,8 @@ action "build azure package" {
 action "Sync Function Triggers" {
   uses = "Azure/github-actions/cli@master"
   needs = ["deploy AzureFunctions"]
-  args = "az resource invoke-action --resource-group ${AZURE_RESOURCEGROUP} --action syncfunctiontriggers --name ${AZURE_APPNAME} --resource-type Microsoft.Web/sites"
   secrets = ["AZURE_RESOURCEGROUP", "AZURE_APPNAME"]
+  env = {
+    AZURE_SCRIPT = "az resource invoke-action --resource-group ${AZURE_RESOURCEGROUP} --action syncfunctiontriggers --name ${AZURE_APPNAME} --resource-type Microsoft.Web/sites"
+  }
 }
