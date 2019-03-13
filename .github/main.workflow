@@ -2,7 +2,7 @@ workflow "deployAzure" {
   on = "push"
   resolves = [
     #     "Sync Function Triggers",
-    "deploy packages",
+    "deploy custom AzureFunctions",
   ]
 }
 
@@ -41,17 +41,12 @@ action "Sync Function Triggers" {
   }
 }
 
-#action "install core tools" {
-#  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-#  needs = ["login Azure"]
-#  args = "i azure-functions-core-tools"
-#}
-
-action "deploy packages" {
-  uses = "./.github/node-runtime"
+action "deploy custom AzureFunctions" {
+  uses = "Azure/github-actions/functions@master"
   needs = ["login Azure"]
-  secrets = ["AZURE_APPNAME"]
   env = {
-    FUNCTIONS_ROOT_PATH = "${GITHUB_WORKSPACE}/azure/app"
+    AZURE_APP_NAME = "ScalaFunctions"
+    AZURE_APP_PACKAGE_LOCATION = "azure/app"
   }
+  runs = "${GITHUB_WORKSPACE}/.github/azure-functions-deploy.sh"
 }
