@@ -50,6 +50,6 @@ action "install core tools" {
 action "deploy packages" {
   uses = "actions/bin/sh@master"
   needs = ["install core tools"]
-  args = "cd ${GITHUB_WORKSPACE}/azure/app && func azure functionapp publish ${AZURE_APPNAME}"
+  args = ["cd ${GITHUB_WORKSPACE}/azure/app && ${GITHUB_WORKSPACE}/node_modules/.bin/func azure functionapp publish ${AZURE_APPNAME}"]
   secrets = ["AZURE_APPNAME"]
 }
