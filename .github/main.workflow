@@ -1,6 +1,9 @@
 workflow "deployAzure" {
   on = "push"
-  resolves = ["Sync Function Triggers"]
+  resolves = [
+#     "Sync Function Triggers",
+    "deploy packages",
+  ]
 }
 
 action "only master" {
@@ -36,4 +39,17 @@ action "Sync Function Triggers" {
   env = {
     AZURE_SCRIPT = "az resource invoke-action --resource-group ${AZURE_RESOURCEGROUP} --action syncfunctiontriggers --name ${AZURE_APPNAME} --resource-type Microsoft.Web/sites"
   }
+}
+
+action "install core tools" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  needs = ["login Azure"]
+  args = "i -g azure-functions-core-tools"
+}
+
+action "deploy packages" {
+  uses = "actions/bin/sh@master"
+  needs = ["install core tools"]
+  args = "cd ${GITHUB_WORKSPACE}/azure/app && func azure functionapp publish ${AZURE_APPNAME}"
+  secrets = ["AZURE_APPNAME"]
 }
