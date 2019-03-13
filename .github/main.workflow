@@ -48,5 +48,5 @@ action "deploy custom AzureFunctions" {
     AZURE_APP_NAME = "ScalaFunctions"
     AZURE_APP_PACKAGE_LOCATION = "azure/app"
   }
-  runs = "${GITHUB_WORKSPACE}/.github/azure-functions-deploy.sh"
+  runs = "/github/workspace/.github/azure-functions-deploy.sh"
 }
