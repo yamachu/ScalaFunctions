@@ -41,15 +41,17 @@ action "Sync Function Triggers" {
   }
 }
 
-action "install core tools" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  needs = ["login Azure"]
-  args = "i azure-functions-core-tools"
-}
+#action "install core tools" {
+#  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+#  needs = ["login Azure"]
+#  args = "i azure-functions-core-tools"
+#}
 
 action "deploy packages" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  needs = ["install core tools"]
+  uses = "./.github/node-runtime"
+  needs = ["login Azure"]
   secrets = ["AZURE_APPNAME"]
-  runs = "sh -c \"cd ${GITHUB_WORKSPACE}/azure/app && ${GITHUB_WORKSPACE}/node_modules/.bin/func azure functionapp publish ${AZURE_APPNAME}\""
+  env = {
+    FUNCTIONS_ROOT_PATH = "${GITHUB_WORKSPACE}/azure/app"
+  }
 }
