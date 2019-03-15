@@ -7,7 +7,7 @@ workflow "deployAzure" {
 
 action "only master" {
   uses = "actions/bin/filter@d820d56839906464fb7a57d1b4e1741cf5183efa"
-  args = "branch master"
+  args = "ref refs/heads/master"
 }
 
 action "build azure package" {
