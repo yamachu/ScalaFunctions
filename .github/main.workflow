@@ -2,6 +2,7 @@ workflow "deployAzure" {
   on = "push"
   resolves = [
     "deploy custom AzureFunctions",
+    "cat event",
   ]
 }
 
@@ -30,4 +31,10 @@ action "deploy custom AzureFunctions" {
     AZURE_APP_PACKAGE_LOCATION = "azure/app"
   }
   runs = "/github/workspace/.github/azure-functions-deploy.sh"
+}
+
+action "cat event" {
+  uses = "actions/bin/sh@master"
+  needs = ["only master"]
+  args = ["cat $GITHUB_EVENT_PATH"]
 }
