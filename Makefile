@@ -35,7 +35,7 @@ deploy/azure: azure/functions.zip
 	@curl -X POST -u '$$$(AZURE_DEPLOY_USER):$(AZURE_DEPLOY_PASSWORD)' --data-binary @azure/functions.zip 'https://$(AZURE_DEPLOY_SITE).scm.azurewebsites.net/api/zipdeploy'
 
 azure/functions.zip: azure/app/MyAwesomeFunction.jar
-	cd azure && zip -r9 functions.zip app
+	cd azure/app && zip -r9 ../functions.zip .
 
 docker/init:
 	docker build . -f java.Dockerfile -t azure-functions-java-host
