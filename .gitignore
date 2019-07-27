@@ -17,4 +17,4 @@ target/
 *.zip
 
 #
-scalajs/dist/handler.*
+scalajs/dist/*.js*
