@@ -15,3 +15,6 @@ target/
 # bye built files
 *.jar
 *.zip
+
+#
+scalajs/dist/handler.*
