@@ -18,3 +18,7 @@ target/
 
 #
 scalajs/dist/*.js*
+
+#
+node_modules
+azurejs/dist/**/*.js*
