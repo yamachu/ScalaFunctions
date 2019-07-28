@@ -22,7 +22,7 @@ lazy val aggregate = (project in file("aggregate"))
   .settings(
     name := "my-awesome-function-aggregate",
   )
-  .aggregate(root, sharedJs, azure, scalajs)
+  .aggregate(root, azure)
 
 lazy val sharedRoot = crossProject(JSPlatform)
   .crossType(CrossType.Pure)
