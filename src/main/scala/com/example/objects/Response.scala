@@ -1,3 +1,7 @@
 package com.example.objects
 
-case class Response(result: String)
+import scala.annotation.meta.field
+import scala.scalajs.js.annotation._
+
+@JSExportTopLevel("Response")
+case class Response(@(JSExport @field) result: String)

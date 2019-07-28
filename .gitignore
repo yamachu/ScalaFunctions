@@ -15,3 +15,10 @@ target/
 # bye built files
 *.jar
 *.zip
+
+#
+scalajs/dist/*.js*
+
+#
+node_modules
+azurejs/dist/**/*.js*

@@ -1,5 +1,8 @@
 package com.example.objects
 
+import scala.scalajs.js.annotation._
+
+@JSExportTopLevel("Requests")
 case class Requests(name: String)
 
 object Requests {
