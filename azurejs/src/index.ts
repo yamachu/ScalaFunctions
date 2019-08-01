@@ -8,7 +8,7 @@ module.exports.httpTrigger = async (context: any, req: any) => {
   const result = handler.run(new Requests(req.body.name));
   if (isRight(result)) {
     context.res = {
-      body: result.value$2.result
+      body: result.value.result
     };
   } else {
     context.res = {

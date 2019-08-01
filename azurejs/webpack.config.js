@@ -24,10 +24,6 @@ module.exports = function(env, argv) {
                     },
                 ],
             },
-            optimization: {
-                // Either-Rightのコンストラクタの名前を残すため
-                minimize: false
-            }
         },
     ];
 };
