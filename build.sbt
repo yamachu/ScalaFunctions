@@ -1,5 +1,10 @@
 import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
 
+lazy val printSbtDir = taskKey[Unit]("printSbtDir")
+printSbtDir := {
+  println(s"sbt.global.base: ${System.getProperty("sbt.global.base")}")
+}
+
 val commonSettings = Seq(
   version := "0.1-SNAPSHOT",
   scalaVersion := "2.12.8",

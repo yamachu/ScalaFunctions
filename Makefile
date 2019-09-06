@@ -21,6 +21,15 @@ build:
 build-watch:
 	sbt "project aggregate" "~assembly"
 
+sample-watch:
+	sbt "printSbtDir; ~assembly"
+
+sample-watch/set-sbt-dir/success:
+	sbt -Dsbt.global.base=$(PWD)/.sbt "printSbtDir; ~assembly"
+
+sample-watch/set-sbt-dir/fail:
+	sbt -Dsbt.global.base=".sbt" "printSbtDir; ~assembly"
+
 %/target/dependency-updates.txt:
 	sbt $(subst /target/dependency-updates.txt,,$@)/dependencyUpdatesReport
 
