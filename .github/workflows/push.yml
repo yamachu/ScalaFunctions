@@ -1,7 +1,7 @@
-on: push
+on:
   push:
     branches:
-      - 'refs/heads/master'
+      - master
 name: deployAzure
 jobs:
   onlyMaster:
