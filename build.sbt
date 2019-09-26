@@ -2,7 +2,7 @@ import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
 
 val commonSettings = Seq(
   version := "0.1-SNAPSHOT",
-  scalaVersion := "2.12.8",
+  scalaVersion := "2.13.1",
   scalacOptions ++= Seq(
     "-deprecation",
     "-feature",
@@ -12,7 +12,7 @@ val commonSettings = Seq(
     "-Xfatal-warnings",
     "-Ywarn-numeric-widen",
     "-Ywarn-unused",
-    "-Ywarn-unused-import",
+    "-Ywarn-unused:-imports,_",
     "-Ywarn-value-discard",
   ),
 )

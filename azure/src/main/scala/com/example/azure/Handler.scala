@@ -8,7 +8,7 @@ import com.example.objects.Requests
 import com.microsoft.azure.functions._
 import com.microsoft.azure.functions.annotation._
 
-import collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 class Handler {
   @FunctionName("HttpHandlerGET")
