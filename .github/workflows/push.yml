@@ -1,4 +1,7 @@
 on: push
+  push:
+    branches:
+      - 'refs/heads/master'
 name: deployAzure
 jobs:
   onlyMaster:
@@ -6,13 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: only master
-      uses: actions/bin/filter@d820d56839906464fb7a57d1b4e1741cf5183efa
-      env:
-        CUSTOM_JQ_FILTER: .ref
-      with:
-        entrypoint: /github/workspace/.github/custom-filter.sh
-        args: refs/heads/master
     - name: build azure package
       uses: yamachu/actions/sbt@master
       with:
