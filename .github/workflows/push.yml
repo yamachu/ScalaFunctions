@@ -1,0 +1,33 @@
+on: push
+name: deployAzure
+jobs:
+  onlyMaster:
+    name: only master
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: only master
+      uses: actions/bin/filter@d820d56839906464fb7a57d1b4e1741cf5183efa
+      env:
+        CUSTOM_JQ_FILTER: .ref
+      with:
+        entrypoint: /github/workspace/.github/custom-filter.sh
+        args: refs/heads/master
+    - name: build azure package
+      uses: yamachu/actions/sbt@master
+      with:
+        args: azure/assembly
+    - name: login Azure
+      uses: Azure/github-actions/login@master
+      env:
+        AZURE_SERVICE_APP_ID: ${{ secrets.AZURE_SERVICE_APP_ID }}
+        AZURE_SERVICE_PASSWORD: ${{ secrets.AZURE_SERVICE_PASSWORD }}
+        AZURE_SERVICE_TENANT: ${{ secrets.AZURE_SERVICE_TENANT }}
+        AZURE_SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION }}
+    - name: deploy custom AzureFunctions
+      uses: Azure/github-actions/functions@master
+      env:
+        AZURE_APP_NAME: ScalaFunctions
+        AZURE_APP_PACKAGE_LOCATION: azure/app
+      with:
+        entrypoint: /github/workspace/.github/azure-functions-deploy.sh
