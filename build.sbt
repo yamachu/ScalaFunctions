@@ -12,7 +12,7 @@ val commonSettings = Seq(
     "-Xfatal-warnings",
     "-Ywarn-numeric-widen",
     "-Ywarn-unused",
-    "-Ywarn-unused-import",
+    "-Ywarn-unused:-imports,_",
     "-Ywarn-value-discard",
   ),
 )
