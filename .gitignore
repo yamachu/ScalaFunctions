@@ -22,3 +22,8 @@ scalajs/dist/*.js*
 #
 node_modules
 azurejs/dist/**/*.js*
+
+# Metals
+.metals/
+.bloop/
+project/metals.sbt
