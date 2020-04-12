@@ -41,4 +41,7 @@ docker/init:
 	docker build . -f java.Dockerfile -t azure-functions-java-host
 
 docker/azure-functions:
-	docker-compose run --service-ports azure-functions
+	docker-compose -f $(or $(COMPOSE_FILE), docker-compose.yml) run --service-ports azure-functions
+
+docker/azure-functions/debug: COMPOSE_FILE=docker-compose.debug.yml
+docker/azure-functions/debug: docker/azure-functions

@@ -71,7 +71,7 @@ val sharedDependencies = Seq(
 )
 
 val azureDependencies = Seq(
-  "com.microsoft.azure.functions" % "azure-functions-java-library" % "1.2.2"
+  "com.microsoft.azure.functions" % "azure-functions-java-library" % "1.3.1"
 )
 
 scalafmtOnCompile in ThisBuild := true
