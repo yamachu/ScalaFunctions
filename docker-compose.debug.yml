@@ -3,7 +3,10 @@ version: "3"
 services: 
   azure-functions:
     image: mcr.microsoft.com/azure-functions/java:3.0
+    env_file:
+      - .env.azure.debug
     ports: 
       - "8080:80"
+      - "5005:5005"
     volumes: 
       - ./azure/app:/home/site/wwwroot
