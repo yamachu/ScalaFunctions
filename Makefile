@@ -24,7 +24,7 @@ build-watch:
 %/target/dependency-updates.txt:
 	sbt $(subst /target/dependency-updates.txt,,$@)/dependencyUpdatesReport
 
-outdated: azure/target/dependency-updates.txt
+outdated: azure/target/dependency-updates.txt aws/target/dependency-updates.txt
 	python ./tools/parse-dependency-updates.py $^
 	@rm $^
 
