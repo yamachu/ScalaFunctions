@@ -58,8 +58,6 @@ lazy val scalajs = (project in file("scalajs"))
   .settings(
     name := "my-awesome-function-scalajs",
     scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
-    scalaJSModuleKind := ModuleKind.CommonJSModule,
-    scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     artifactPath in (Compile, fastOptJS) := baseDirectory.value / "dist" / "handler.js",
     artifactPath in (Compile, fullOptJS) := baseDirectory.value / "dist" / "handler.js",
   )
@@ -67,7 +65,7 @@ lazy val scalajs = (project in file("scalajs"))
   .dependsOn(sharedJs)
 
 val sharedDependencies = Seq(
-  "org.scala-js" %% "scalajs-stubs" % scalaJSVersion % "provided"
+  "org.scala-js" %% "scalajs-stubs" % "1.0.0" % "provided" // scalaJSVersion
 )
 
 val azureDependencies = Seq(
